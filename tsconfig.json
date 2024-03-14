@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"lib": ["ES2020"],
+		"module": "CommonJS",
+		"outDir": "public",
+		"sourceMap": true,
+		"strict": true,
+		"target": "ES2020"
+	},
+	"include": ["src"]
+}
