@@ -33,12 +33,37 @@ function greeting(greet: Greet, mgs: string) {
 	greet(mgs)
 }
 
-type Filter<T> = {
+type Filter = {
 	<T>(array: T[], func: (item: T) => boolean): T[]
 }
 
-// const filter: Filter<number> = ([1, 2, 3], (item) => {
+function map<T, U>(array: T, item: U) {
+	// code
+}
 
-// }) => {
+type TreeNode = {
+	value: string
+}
 
+type LeafNode = TreeNode & {
+	isLeaf: true
+}
+
+type InnerNode = TreeNode & {
+	children: [TreeNode] | [TreeNode, TreeNode]
+}
+
+// type MyEvent<T = HTMLElement> = {
+// 	target: T
+// 	type: string
+// }
+
+// type MyEvent<T extends HTMLElement = HTMLElement> = {
+// 	target: T
+// 	type: string
+// }
+
+// type MyEvent2<Type extends string, Target extends HTMLElement = HTMLElement> = {
+// 	target: Target
+// 	type: Type
 // }
