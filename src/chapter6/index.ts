@@ -149,3 +149,12 @@
 		delete dialog.id
 	}
 }
+
+{
+	let userId!: string
+	fetchUser()
+	userId.toUpperCase() // OK
+	function fetchUser() {
+		userId = 'abscs'
+	}
+}
