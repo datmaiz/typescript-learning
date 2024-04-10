@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"lib": ["DOM"],
+		"lib": ["DOM", "ES2015"],
 		"module": "CommonJS",
 		"outDir": "public",
 		"sourceMap": true,

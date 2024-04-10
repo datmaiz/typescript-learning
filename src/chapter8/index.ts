@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import { readFile } from 'fs'
 
 {
 	function readFile(
@@ -40,5 +41,46 @@ import * as fs from 'fs'
 				cb(null, result)
 			})
 		})
+	}
+	type Executor<T, E extends Error> = (resolve: (result: T) => void, reject: (error: E) => void) => void
+	class Promise<T, E extends Error> {
+		constructor(f: Executor<T, E>) {}
+		then<U, F extends Error>(g: (result: T) => Promise<U, F>): Promise<U, F>
+		catch<U, F extends Error>(g: (error: E) => Promise<U, F>): Promise<U, F>
+	}
+
+	function readFilePromise(path: string): Promise<string> {
+		return new Promise((resolve, reject) => {
+			readFile(path, (error, result) => {
+				if (error) {
+					reject(error)
+				} else {
+					resolve(result)
+				}
+			})
+		})
+	}
+}
+
+{
+	// promise
+	function getUser() {
+		getUserID(18)
+			.then(user => getLocation(user))
+			.then(location => console.info('got location', location))
+			.catch(error => console.error(error))
+			.finally(() => console.info('done getting location'))
+	}
+
+	async function getUser() {
+		try {
+			let user = await getUserID(18)
+			let location = await getLocation(user)
+			console.info('got location', user)
+		} catch (error) {
+			console.error(error)
+		} finally {
+			console.info('done getting location')
+		}
 	}
 }
